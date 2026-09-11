@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pradyumna Kumar Sahu — Website Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a href="#top" class="nav__logo"><img src="" alt=""><span class="dot">.</span></a>
+      <nav class="nav__links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#vlog">Vlog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__text">
+      <p class="hero__eyebrow">Website Developer</p>
+      <h1 class="hero__name">Pradyumna Kumar<br>Sahu</h1>
+      <p class="hero__tagline">I build things for the web — from clean interfaces
+        to the logic that runs underneath them.</p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--solid">See my work</a>
+        <a href="resume.pdf" class="btn btn--ghost" id="resumeBtn" download>Download Resume</a>
+      </div>
+      <div class="hero__socials">
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:pradyumna1999s@gmail">Email</a>
+      </div>
+    </div>
+
+    <div class="hero__terminal" aria-hidden="true">
+      <div class="terminal">
+        <div class="terminal__bar">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--yellow"></span>
+          <span class="dot dot--green"></span>
+          <span class="terminal__title">pradyumna@dev: ~</span>
+        </div>
+        <div class="terminal__body" id="terminalBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="section__head">
+      <span class="section__index">about</span>
+      <h2>A bit about me</h2>
+    </div>
+    <div class="about__grid">
+      <p class="about__lead">
+        I'm Pradyumna — a Website developer who enjoys turning ideas into
+        working products, one component at a time. I care about code that's
+        easy to read six months from now, and interfaces that don't make
+        people think twice.
+      </p>
+      <p>
+        Outside of writing code, I like documenting what I learn and sharing
+        it — you'll find some of that in my daily vlog below. I'm currently
+        sharpening my skills in full-stack development and looking for
+        opportunities to build things that matter.
+        <br><br>
+        <em>Replace this paragraph with your real story — where you studied,
+        what you're proud of, what you're currently learning.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section class="section section--alt" id="skills">
+    <div class="section__head">
+      <span class="section__index">skills</span>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skills__grid">
+      <div class="skills__group">
+        <h3>Languages</h3>
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Java</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+      <div class="skills__group">
+        <h3>Tools &amp; Platforms</h3>
+        <div class="tags">
+          <span class="tag">Git &amp; GitHub</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Linux</span>
+        </div>
+      </div>
+      <div class="skills__group">
+        <h3>Currently learning</h3>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="section" id="projects">
+    <div class="section__head">
+      <span class="section__index">Projects</span>
+      <h2>Things I've built</h2>
+    </div>
+
+    <article class="project">
+      <div class="project__info">
+        <h3>Project One</h3>
+        <p>A short, honest description of what this project does and the
+          problem it solves. Mention your specific role if it was a team
+          project.</p>
+        <div class="tags">
+          <span class="tag tag--mono">HTML</span>
+          <span class="tag tag--mono">CSS</span>
+          <span class="tag tag--mono">JavaScript</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project__info">
+        <h3>Project Two</h3>
+        <p>Another project summary — what it does, why you built it, and
+          any interesting technical decision you made along the way.</p>
+        <div class="tags">
+          <span class="tag tag--mono">Python</span>
+          <span class="tag tag--mono">SQL</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project__info">
+        <h3>Project Three</h3>
+        <p>Add as many of these as you need. Keep the description to two or
+          three sentences — link out for anyone who wants more detail.</p>
+        <div class="tags">
+          <span class="tag tag--mono">Java</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section class="section section--alt" id="education">
+    <div class="section__head">
+      <span class="section__index">EDUCATIONS</span>
+      <h2>Where I've studied</h2>
+    </div>
+    <ol class="timeline">
+      <li class="timeline__item">
+        <span class="timeline__year">2017 — 2020</span>
+        <h3>BCA</h3>
+        <p>Creative Techno College <br>Affiliated to UTKAL UNIVERSITY</br><br>Angul, Odisha, INDIA.</br></p>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__year">2015 — 2017</span>
+        <h3>Higher Secondary (12th)</h3>
+        <p>Janata College, Satmile<br>Dhenkanal, Odisha, INDIA.</br></p>
+      </li>
+      <li class="timeline__item">
+        <span class="timeline__year">2014 — 2015</span>
+        <h3>Secondary (10th)</h3>
+        <p>Pallivikash High School, Kurumitha<br>Dhenkanal, Odisha, INDIA.</br></p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== DAILY VLOG ===== -->
+  <section class="section" id="vlog">
+    <div class="section__head">
+      <span class="section__index">vlog</span>
+      <h2>Daily vlog</h2>
+    </div>
+    <p class="vlog__intro">Short, dated notes on what I'm building, learning
+      or breaking on any given day. Add a new entry any time — newest at
+      the top.</p>
+
+    <div class="vlog__list" id="vlogList">
+      <!-- Entries are also injectable via script.js -->
+      <article class="vlog__entry">
+        <span class="vlog__date">07 Sep 2026</span>
+        <h3>Launched my personal website</h3>
+        <p>Set up the first version of this site — hero, skills, projects
+          and this vlog section. Next up: hook the contact form to a real
+          email service.</p>
+      </article>
+      <article class="vlog__entry">
+        <span class="vlog__date">05 Sep 2026</span>
+        <h3>Started learning React</h3>
+        <p>Went through components and props today. Planning to rebuild one
+          of my old vanilla-JS projects with it as practice.</p>
+      </article>
+    </div>
+
+    <form class="vlog__form" id="vlogForm">
+      <input type="text" id="vlogTitle" placeholder="Entry title" required>
+      <textarea id="vlogText" placeholder="What did you work on today?" required></textarea>
+      <button type="submit" class="btn btn--solid">Add entry</button>
+    </form>
+    <p class="vlog__note">New entries you add here are stored in this
+      browser only (via <code>localStorage</code>) — they won't be visible
+      to site visitors until you wire up a backend.</p>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section section--alt" id="contact">
+    <div class="section__head">
+      <span class="section__index">contact</span>
+      <h2>Get in touch</h2>
+    </div>
+    <div class="contact__grid">
+      <p class="contact__lead">
+        Have a project in mind, or just want to say hi? My inbox is open.
+      </p>
+      <form class="contact__form" id="contactForm">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--solid">Send message</button>
+        <p class="form__status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Pradyumna Kumar Sahu. Built with HTML, CSS &amp; JavaScript.</p>
+    <div class="footer__socials">
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+      <a href="mailto:pradyumna@example.com">Email</a>
+    </div>
+    <a href="#top" class="footer__top">Back to top ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
