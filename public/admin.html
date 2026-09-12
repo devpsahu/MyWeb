@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — PKSahu.com</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .admin-wrap { max-width: 720px; margin: 0 auto; padding: 90px 32px 120px; }
+  .login-box {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg); padding: 40px; max-width: 420px; margin: 60px auto 0;
+  }
+  .login-box h1 { font-size: 1.5rem; margin-bottom: 22px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 7px; }
+  .field input {
+    width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-sm); padding: 12px 14px; color: var(--text); font-family: inherit; font-size: 0.95rem;
+  }
+  .error-msg { color: #ff8080; font-size: 0.88rem; margin-bottom: 14px; min-height: 1em; }
+  .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+  .admin-section {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg); padding: 30px; margin-bottom: 26px;
+  }
+  .admin-section h2 { font-size: 1.15rem; margin-bottom: 20px; }
+  .ep-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    border: 1px solid var(--panel-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 14px;
+  }
+  .ep-row input { grid-column: span 1; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-sm); padding: 9px 12px; color: var(--text); font-family: inherit; font-size: 0.88rem; }
+  .ep-row .full { grid-column: 1 / -1; }
+  .ep-row .ep-actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; }
+  .ep-actions button { background: none; border: none; color: #ff8080; cursor: pointer; font-size: 0.85rem; }
+  .save-row { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
+  .save-msg { font-size: 0.85rem; color: var(--mint); }
+  .resume-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .resume-row .current { color: var(--text-muted); font-size: 0.9rem; }
+  input[type="file"] { color: var(--text-muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">PKSahu<span class="dot">.</span><span class="com">com</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="freelance.html">Freelance</a></li>
+      <li><a href="vlogs.html">Vlogs</a></li>
+      <li><a href="admin.html" class="active">🔒 Admin</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Logged-out view -->
+<div class="admin-wrap" id="login-view">
+  <div class="login-box">
+    <h1>Admin login</h1>
+    <p class="error-msg" id="login-error"></p>
+    <form id="login-form">
+      <div class="field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Log in</button>
+    </form>
+  </div>
+</div>
+
+<!-- Logged-in view -->
+<div class="admin-wrap" id="dashboard-view" style="display:none;">
+  <div class="admin-header">
+    <h1 style="font-size:1.6rem;">Admin dashboard</h1>
+    <button class="btn btn-ghost" id="logout-btn">Log out</button>
+  </div>
+
+  <div class="admin-section">
+    <h2>Resume</h2>
+    <div class="resume-row">
+      <span class="current" id="resume-current">No resume uploaded yet.</span>
+      <input type="file" id="resume-file" accept=".pdf,.doc,.docx">
+    </div>
+    <div class="save-row">
+      <button class="btn btn-primary" id="resume-upload-btn">Upload resume</button>
+      <span class="save-msg" id="resume-msg"></span>
+    </div>
+  </div>
+
+  <div class="admin-section">
+    <h2>Vlog episodes</h2>
+    <div id="ep-list"></div>
+    <button class="btn btn-ghost" id="add-ep-btn" style="margin-bottom:20px;">+ Add episode</button>
+    <div class="save-row">
+      <button class="btn btn-primary" id="save-eps-btn">Save changes</button>
+      <span class="save-msg" id="eps-msg"></span>
+    </div>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
