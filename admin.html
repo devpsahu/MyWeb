@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — PKSahu.com</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .admin-wrap { max-width: 720px; margin: 0 auto; padding: 90px 32px 120px; }
+  .login-box {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg); padding: 40px; max-width: 420px; margin: 60px auto 0;
+  }
+  .login-box h1 { font-size: 1.5rem; margin-bottom: 22px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 7px; }
+  .field input {
+    width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-sm); padding: 12px 14px; color: var(--text); font-family: inherit; font-size: 0.95rem;
+  }
+  .error-msg { color: #ff8080; font-size: 0.88rem; margin-bottom: 14px; min-height: 1em; }
+  .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+  .admin-section {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg); padding: 30px; margin-bottom: 26px;
+  }
+  .admin-section h2 { font-size: 1.15rem; margin-bottom: 20px; }
+  .ep-row {
+    border: 1px solid var(--panel-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 14px;
+  }
+  .ep-row input, .ep-row textarea {
+    width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-sm); padding: 9px 12px; color: var(--text); font-family: inherit;
+    font-size: 0.88rem; margin-bottom: 10px;
+  }
+  .ep-row textarea { min-height: 100px; resize: vertical; }
+  .ep-row .ep-actions { display: flex; justify-content: flex-end; }
+  .ep-actions button { background: none; border: none; color: #ff8080; cursor: pointer; font-size: 0.85rem; }
+  .save-row { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
+  .save-msg { font-size: 0.85rem; color: var(--mint); }
+  .resume-row, .photo-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .resume-row .current, .photo-row .current { color: var(--text-muted); font-size: 0.9rem; }
+  input[type="file"] { color: var(--text-muted); font-size: 0.85rem; }
+  #current-photo { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; display: none; }
+
+  /* ---- New split-screen login ---- */
+  .login-screen {
+    min-height: 100vh;
+    padding: 48px 24px 48px;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 15% 20%, #6a4cff 0%, transparent 45%),
+                radial-gradient(circle at 85% 15%, #ff6f6f 0%, transparent 40%),
+                radial-gradient(circle at 30% 90%, #ffb37a 0%, transparent 45%),
+                #14101c;
+  }
+  .login-card {
+    width: 100%; max-width: 980px; min-height: 560px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+  }
+  .login-left { padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .login-logo { font-weight: 800; font-size: 1.3rem; margin-bottom: 34px; }
+  .login-left h1 { font-size: 1.7rem; margin-bottom: 6px; }
+  .login-left .sub { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 28px; }
+  .login-field { margin-bottom: 18px; }
+  .login-field label { display: block; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
+  .login-field input {
+    width: 100%; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px; padding: 13px 18px; color: #fff; font-family: inherit; font-size: 0.92rem;
+  }
+  .login-field input:focus { outline: none; border-color: #ff9a6c; }
+  .login-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-bottom: 24px; }
+  .login-row label { display: flex; align-items: center; gap: 7px; color: var(--text-muted); cursor: pointer; }
+  .login-row a { color: var(--text-muted); text-decoration: underline; cursor: pointer; }
+  .login-error {
+    color: #ff8080; font-size: 0.85rem; min-height: 1.1em; margin-bottom: 14px;
+  }
+  .login-submit {
+    width: 100%; border: none; border-radius: 999px; padding: 15px; cursor: pointer;
+    font-family: inherit; font-weight: 700; font-size: 0.95rem; color: #241206;
+    background: linear-gradient(90deg, #ffb37a, #ff8f6b);
+  }
+  .login-submit:disabled { opacity: 0.6; cursor: default; }
+  .login-social { display: flex; gap: 14px; justify-content: center; margin-top: 26px; }
+  .login-social span {
+    width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.08); font-size: 1.05rem; opacity: 0.45; cursor: not-allowed;
+  }
+  .login-social-note { text-align: center; color: var(--text-faint); font-size: 0.72rem; margin-top: 10px; }
+
+  .login-right {
+    position: relative; margin: 18px; border-radius: 20px; overflow: hidden;
+    background: linear-gradient(160deg, #0c0c14 0%, #1a1330 60%, #241a3a 100%);
+    padding: 40px 36px; display: flex; flex-direction: column;
+  }
+  .login-right h2 { font-size: 1.55rem; line-height: 1.25; margin-bottom: 18px; }
+  .login-quote-mark { font-size: 2.4rem; color: #ff9a6c; line-height: 0; margin-bottom: 6px; }
+  .login-right p.quote { color: #d8d4e6; font-size: 0.95rem; line-height: 1.6; margin-bottom: 18px; }
+  .login-right .attrib b { display: block; font-size: 0.95rem; }
+  .login-right .attrib span { color: var(--text-faint); font-size: 0.82rem; }
+  .login-nav-dots { display: flex; gap: 10px; margin-top: auto; padding-top: 24px; }
+  .login-nav-dots span {
+    width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.12); font-size: 1rem;
+  }
+  .login-mini-card {
+    position: absolute; right: 28px; bottom: -14px; width: 240px;
+    background: #fdf5ef; color: #241206; border-radius: 16px; padding: 18px 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  }
+  .login-mini-card h3 { font-size: 0.92rem; margin-bottom: 6px; }
+  .login-mini-card p { font-size: 0.78rem; color: #6b5c52; line-height: 1.4; }
+  @media (max-width: 860px) {
+    .login-card { grid-template-columns: 1fr; }
+    .login-right { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">PKSahu<span class="dot">.</span><span class="com">com</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="freelance.html">Freelance</a></li>
+      <li><a href="vlogs.html">Vlogs</a></li>
+      <li><a href="admin.html" class="active">🔒 Admin</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Logged-out view -->
+<div id="login-view" class="login-screen">
+  <div class="login-card">
+
+    <div class="login-left">
+      <div class="login-logo">PKSahu<span style="color:#ff9a6c;">.</span>admin</div>
+      <h1>Welcome back</h1>
+      <p class="sub">Please enter your admin account details</p>
+
+      <p class="login-error" id="login-error"></p>
+
+      <form id="login-form" autocomplete="on">
+        <div class="login-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="username" placeholder="you@example.com" required>
+        </div>
+        <div class="login-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
+        </div>
+        <div class="login-row">
+          <label><input type="checkbox" id="remember-me"> Keep me logged in</label>
+          <a id="forgot-password">Forgot Password?</a>
+        </div>
+        <button type="submit" class="login-submit" id="login-submit">Sign in</button>
+      </form>
+
+      <div class="login-social">
+        <span title="Email login only">G</span>
+        <span title="Email login only">⌘</span>
+        <span title="Email login only">f</span>
+      </div>
+      <p class="login-social-note">This is a private admin area — email &amp; password only.</p>
+    </div>
+
+    <div class="login-right">
+      <h2>Run your site<br>in a few clicks.</h2>
+      <div class="login-quote-mark">&ldquo;</div>
+      <p class="quote">Post this week's vlog, swap your resume, or update your photo — all from one simple dashboard, no code required.</p>
+      <div class="attrib">
+        <b>Admin Dashboard</b>
+        <span>PKSahu.com</span>
+      </div>
+      <div class="login-nav-dots">
+        <span>←</span>
+        <span>→</span>
+      </div>
+      <div class="login-mini-card">
+        <h3>Fresh content, every week</h3>
+        <p>Your text vlog, resume, and profile photo all update instantly on the live site.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Logged-in view -->
+<div class="admin-wrap" id="dashboard-view" style="display:none;">
+  <div class="admin-header">
+    <h1 style="font-size:1.6rem;">Admin dashboard</h1>
+    <button class="btn btn-ghost" id="logout-btn">Log out</button>
+  </div>
+
+  <div class="admin-section">
+    <h2>Profile photo</h2>
+    <div class="photo-row">
+      <img id="current-photo" alt="Current profile photo">
+      <span class="current" id="photo-current">No custom photo set (using default).</span>
+      <input type="file" id="photo-file" accept="image/*">
+    </div>
+    <div class="save-row">
+      <button class="btn btn-primary" id="photo-upload-btn">Upload photo</button>
+      <span class="save-msg" id="photo-msg"></span>
+    </div>
+  </div>
+
+  <div class="admin-section">
+    <h2>Resume</h2>
+    <div class="resume-row">
+      <span class="current" id="resume-current">No resume uploaded yet.</span>
+      <input type="file" id="resume-file" accept=".pdf,.doc,.docx">
+    </div>
+    <div class="save-row">
+      <button class="btn btn-primary" id="resume-upload-btn">Upload resume</button>
+      <span class="save-msg" id="resume-msg"></span>
+    </div>
+  </div>
+
+  <div class="admin-section">
+    <h2>Weekly text vlog</h2>
+    <div id="ep-list"></div>
+    <button class="btn btn-ghost" id="add-ep-btn" style="margin-bottom:20px;">+ New vlog post</button>
+    <div class="save-row">
+      <button class="btn btn-primary" id="save-eps-btn">Save changes</button>
+      <span class="save-msg" id="eps-msg"></span>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vlogs — PKSahu.com</title>
+<meta name="description" content="Text vlogs from Pradyumna Kumar Sahu.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .vlog-post {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg); padding: 30px; margin-bottom: 22px;
+  }
+  .vlog-post .meta { color: var(--text-faint); font-size: 0.82rem; margin-bottom: 10px; }
+  .vlog-post h2 { font-size: 1.25rem; margin-bottom: 12px; }
+  .vlog-post .body { color: var(--text-muted); white-space: pre-wrap; line-height: 1.65; }
+  .vlog-empty { color: var(--text-faint); font-size: 0.95rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">PKSahu<span class="dot">.</span><span class="com">com</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="freelance.html">Freelance</a></li>
+      <li><a href="vlogs.html" class="active">Vlogs</a></li>
+      <li><a href="admin.html">🔒 Admin</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <span class="kicker">Vlogs</span>
+    <h1>Behind the screen.</h1>
+    <p>Weekly text vlogs on building products, freelancing, and life in Bangalore.</p>
+  </div>
+</header>
+
+<section class="section" style="padding-top:36px;">
+  <div class="wrap" id="vlog-feed">
+    <p class="vlog-empty">Loading...</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 PKSahu.com</span>
+    <span class="foot-loc">📍 Bangalore, India</span>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/vlogs.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
